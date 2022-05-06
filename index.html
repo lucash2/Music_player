@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="assets/highspeaker.png" type="image/x-icon">
+    <title>Music Player</title>
+  </head>
+  <body>
+    <div class="container">
+      <img id="songimg" src="assets/General Chat.png" alt="" />
+    </div>
+    <div class="songcontrols">
+      <div class="titulos">
+        <h1 id="songname"></h1>
+        <h2 id="songsubname"></h2>
+      </div>
+      <audio id="song">
+        <source src="assets/General Chat.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+      <div class="progress_bar">
+          <div class="progressed" id="progressed"></div>
+      </div>
+      <div class="controls">
+        <span
+          ><img
+            class="button"
+            id="backsongid"
+            onclick="backsong()"
+            src="assets/backsong.png"
+            alt=""
+        /></span>
+        <span
+          ><img
+            class="button"
+            id="backwardid"
+            onclick="backwardaudio()"
+            src="assets/backward.png"
+            alt=""
+        /></span>
+        <span
+          ><img
+            class="button"
+            id="playid"
+            onclick="playaudio()"
+            src="assets/play.png"
+            alt=""
+        /></span>
+        <span
+          ><img
+            class="button"
+            id="pauseid"
+            onclick="pauseaudio()"
+            src="assets/pause.png"
+            alt=""
+        /></span>
+        <span
+          ><img
+            class="button"
+            id="forwardid"
+            onclick="forwardaudio()"
+            src="assets/forward.png"
+            alt=""
+        /></span>
+        <span
+          ><img
+            class="button"
+            id="nextsongid"
+            onclick="nextsong()"
+            src="assets/nextsong.png"
+            alt=""
+        /></span>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

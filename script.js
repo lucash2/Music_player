@@ -3,8 +3,6 @@ let music = document.getElementById("song");
 let songname = document.getElementById("songname");
 let songsubname = document.getElementById("songsubname");
 
-var nowplaying = 0;
-
 let playlist = [
   {
     name: "General Chat",
@@ -26,23 +24,38 @@ let playlist = [
   },
 ];
 
-// let namesrc = playlist.map((playlist) => playlist.name);
-// let subnamesrc = playlist.map((playlist) => playlist.subname);
-// let imgsrc = playlist.map((playlist) => playlist.img);
-// let songsrc = playlist.map((playlist) => playlist.song);
+let namesrc = playlist.map((playlist) => playlist.name);
+let subnamesrc = playlist.map((playlist) => playlist.subname);
+let imgsrc = playlist.map((playlist) => playlist.img);
+let songsrc = playlist.map((playlist) => playlist.song);
+
+// Barra de progresso da musica atual
+var progressed = document.getElementById("progressed");
+
+song.ontimeupdate = function (e) {
+  progressed.style.width =
+    Math.floor((song.currentTime * 100) / song.duration) + "%";
+};
 
 //Controles do player
 var start = document.getElementById("playid");
 var paused = document.getElementById("pauseid");
+var nowplaying = 0;
 
 function backsong() {
-  nowplaying--;
-  music.setAttribute("src", playlist[nowplaying].song);
-  music.addEventListener("loadeddata", () => {
-    songname.textContent = playlist[nowplaying].name;
-    songsubname.textContent = playlist[nowplaying].subname;
-    songimg.src = playlist[nowplaying].img;
-  });
+  if (nowplaying <= 0) {
+    nowplaying = 2;
+    songimg.src = imgsrc[nowplaying];
+    song.src = songsrc[nowplaying];
+    songname.innerHTML = namesrc[nowplaying];
+    songsubname.innerHTML = subnamesrc[nowplaying];
+  } else {
+    nowplaying = nowplaying - 1;
+    songimg.src = imgsrc[nowplaying];
+    song.src = songsrc[nowplaying];
+    songname.innerHTML = namesrc[nowplaying];
+    songsubname.innerHTML = subnamesrc[nowplaying];
+  }
 }
 
 function backwardaudio() {
@@ -62,28 +75,32 @@ function pauseaudio() {
 }
 
 function forwardaudio() {
-   music.currentTime += 15;
+  music.currentTime += 15;
 }
 
 function nextsong() {
   if (nowplaying >= 2) {
     nowplaying = 0;
+    songimg.src = imgsrc[nowplaying];
+    song.src = songsrc[nowplaying];
+    songname.innerHTML = namesrc[nowplaying];
+    songsubname.innerHTML = subnamesrc[nowplaying];
   } else {
-    nowplaying = 1 + nowplaying;
+    nowplaying = nowplaying + 1;
+    songimg.src = imgsrc[nowplaying];
+    song.src = songsrc[nowplaying];
+    songname.innerHTML = namesrc[nowplaying];
+    songsubname.innerHTML = subnamesrc[nowplaying];
   }
 }
 
-console.log(nowplaying);
+songimg.src = imgsrc[nowplaying];
+song.src = songsrc[nowplaying];
+songname.innerHTML = namesrc[nowplaying];
+songsubname.innerHTML = subnamesrc[nowplaying];
 
-// Barra de progresso da musica atual
-var progressed = document.getElementById("progressed");
+let volume = document.getElementById("volumeid");
 
-song.ontimeupdate = function (e) {
-  progressed.style.width =
-    Math.floor((song.currentTime * 100) / song.duration) + "%";
-};
-
-// songimg.src = imgsrc[nowplaying];
-// song.src = songsrc[nowplaying];
-// songname.innerHTML = namesrc[nowplaying];
-// songsubname.innerHTML = subnamesrc[nowplaying];
+volume.addEventListener("change", function (e) {
+  music.volume = e.currentTarget.value / 100;
+});

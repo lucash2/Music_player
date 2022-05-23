@@ -33,8 +33,13 @@ let songsrc = playlist.map((playlist) => playlist.song);
 var progressed = document.getElementById("progressed");
 
 song.ontimeupdate = function (e) {
-  progressed.style.width =
+  let valueProgressed =
     Math.floor((song.currentTime * 100) / song.duration) + "%";
+  progressed.style.width = valueProgressed;
+  if (valueProgressed == "100%") {
+    nextsong();
+    playaudio();
+  }
 };
 
 //Controles do player
@@ -49,12 +54,14 @@ function backsong() {
     song.src = songsrc[nowplaying];
     songname.innerHTML = namesrc[nowplaying];
     songsubname.innerHTML = subnamesrc[nowplaying];
+    playaudio();
   } else {
     nowplaying = nowplaying - 1;
     songimg.src = imgsrc[nowplaying];
     song.src = songsrc[nowplaying];
     songname.innerHTML = namesrc[nowplaying];
     songsubname.innerHTML = subnamesrc[nowplaying];
+    playaudio();
   }
 }
 
@@ -85,12 +92,14 @@ function nextsong() {
     song.src = songsrc[nowplaying];
     songname.innerHTML = namesrc[nowplaying];
     songsubname.innerHTML = subnamesrc[nowplaying];
+    playaudio();
   } else {
     nowplaying = nowplaying + 1;
     songimg.src = imgsrc[nowplaying];
     song.src = songsrc[nowplaying];
     songname.innerHTML = namesrc[nowplaying];
     songsubname.innerHTML = subnamesrc[nowplaying];
+    playaudio();
   }
 }
 

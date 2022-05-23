@@ -1,5 +1,5 @@
 * {
-  background-color: antiquewhite;
+  background-color: #E9D5CA;
   overflow: hidden;
   font-family: sans-serif;
 }
@@ -12,7 +12,7 @@
 }
 
 .titulos {
-  color: rgb(68, 68, 68);
+  color: #363062;
   margin-bottom: 20px;
 }
 
@@ -30,13 +30,13 @@
 .progress_bar {
   margin: auto;
   height: 10px;
-  width: 500px;
-  background-color: #aaa;
+  width: 350px;
+  background-color: #827397;
 }
 
 .progressed {
   height: 10px;
-  background-color: green;
+  background-color: #363062;
   width: 0%;
 }
 
@@ -61,3 +61,4 @@
 #pauseid {
   display: none;
 }
+
